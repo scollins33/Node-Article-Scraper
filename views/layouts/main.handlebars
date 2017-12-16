@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Article Scraper</title>
+
+    <!-- jQuery 3.2.1 CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+    <!-- Materialize 1.0 CDN -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Customer Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <nav class="nav-wrapper grey" id="topnav">
+        <span class="brand-logo left">Node Article Scraper</span>
+        <ul class="right">
+            <li><a href="/" class="">Home</a></li>
+            <li><a href="/" class="">Saved Articles</a></li>
+            <button type="button" class="btn teal">Scrape New Articles!</button>
+        </ul>
+    </nav>
+
+    <div class="center-align" id="sub-header">
+        <h1>Mongo Article Scraper</h1>
+    </div>
+
+    <div class="container">
+
+        {{{ body }}}
+
+    </div>
+
+</body>
+</html>

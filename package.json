@@ -1,0 +1,27 @@
+{
+  "name": "node-article-scraper",
+  "version": "1.0.0",
+  "description": "article scrape and supporting db",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scollins33/Node-Article-Scraper.git"
+  },
+  "author": "sean c",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scollins33/Node-Article-Scraper/issues"
+  },
+  "homepage": "https://github.com/scollins33/Node-Article-Scraper#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.13.7",
+    "request": "^2.83.0"
+  }
+}
