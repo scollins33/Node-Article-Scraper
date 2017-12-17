@@ -1,8 +1,6 @@
 const express = require('express');
 const expHandls = require('express-handlebars');
 const bodyParser = require('body-parser');
-const cheerio = require('cheerio');
-const mongoose = require('mongoose');
 
 // port and app declaration
 const PORT = process.env.PORT || 3000;

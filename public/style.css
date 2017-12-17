@@ -1,3 +1,11 @@
 #topnav {
     padding: 0 30px;
 }
+
+.collection .collection-item {
+    margin: 20px 10px;
+}
+
+a.btn-floating {
+    margin: 0 10px;
+}
