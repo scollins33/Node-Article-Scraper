@@ -1,19 +1,12 @@
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
-const mongoose = require('mongoose');
 
 // Create Router
 const router = express.Router();
 
 // Pull in the models as "db"
 const db = require('../models');
-
-// Create Mongoose connection
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/redditScrapes", {
-    useMongoClient: true
-});
 
 router.get('/', (req, res) => {
     res.render('index');
@@ -41,16 +34,22 @@ router.get('/scrape/:sub', (req, res) => {
 
 
                 db.Article
-                    .create(result)
-                    .then( () => res.send('Scaping and Saving done') )
+                    .create(thisArticle)
+                    .then( () => {
+                        console.log(`Added ${thisArticle} to DB`);
+                    })
                     .catch( (err) => res.json(err) );
             });
 
-            res.status(200).end();
+            res.status(200).send('Scaping and Saving done');
         }
     });
 });
 
-
+router.get('/retrieve', (req, res) => {
+    db.Article.find({})
+        .then( (articles) => res.status(200).json(articles) )
+        .catch( (err) => res.status(500).json(err) );
+});
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require('express');
 const expHandls = require('express-handlebars');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // port and app declaration
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,12 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.engine('handlebars', expHandls({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+// Create Mongoose connection
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/redditScrapes", {
+    useMongoClient: true
+});
 
 // get the routes
 const routes = require('./controllers/routes');
