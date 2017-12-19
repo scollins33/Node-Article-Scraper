@@ -49,7 +49,6 @@ router.get('/scrape/:sub', (req, res) => {
 router.get('/saved', (req, res) => {
     db.Article.find({})
         .populate('note')
-        .limit(50)
         .then( (articles) => res.status(200).render('index', { articles }) )
         .catch( (err) => res.status(500).json(err) );
 });
