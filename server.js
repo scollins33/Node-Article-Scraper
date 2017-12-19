@@ -18,9 +18,6 @@ app.set('view engine', 'handlebars');
 
 // Create Mongoose connection
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/redditScrapes";
-
-console.log(MONGODB_URI);
-
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
     useMongoClient: true
