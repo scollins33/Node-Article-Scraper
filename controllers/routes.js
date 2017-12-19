@@ -41,15 +41,50 @@ router.get('/scrape/:sub', (req, res) => {
                     .catch( (err) => res.json(err) );
             });
 
-            res.status(200).send('Scaping and Saving done');
+            res.status(200).send('saved');
         }
     });
 });
 
-router.get('/retrieve', (req, res) => {
+router.get('/saved', (req, res) => {
     db.Article.find({})
-        .then( (articles) => res.status(200).json(articles) )
+        .populate('note')
+        .limit(50)
+        .then( (articles) => res.status(200).render('index', { articles }) )
         .catch( (err) => res.status(500).json(err) );
+});
+
+router.delete('/:id', (req, res) => {
+    console.log(`got request to delete ${req.params.id}`);
+
+    db.Article.remove({ _id: req.params.id }, (err) => console.log(err) )
+        .then(res.status(200).send('saved'));
+});
+
+router.post('/notes/:id', (req, res) => {
+    console.log(`got request to create note for ${req.params.id}`);
+
+    console.log(req.body);
+
+    db.Note
+        .create(req.body)
+        .then(function(dbNote) {
+            return db.Article.findOneAndUpdate({ _id: req.params.id },
+                { $push: { note: dbNote._id } },
+                { new: true });
+        })
+        .then( (dbArticle) => {
+            console.log(`Added Note to ${dbArticle}`);
+            res.status(200).end();
+        })
+        .catch((err) => res.json(err) );
+});
+
+router.delete('/notes/:id', (req, res) => {
+    console.log(`got request to delete ${req.params.id}`);
+
+    db.Note.remove({ _id: req.params.id }, (err) => console.log(err) )
+        .then(res.status(200).send('deleted'));
 });
 
 module.exports = router;

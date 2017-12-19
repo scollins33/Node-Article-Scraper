@@ -1,13 +1,54 @@
 <li class="collection-item hoverable">
-    <!-- Delete Button -->
-    <a class="btn-floating btn-medium red right">
-        <i class="material-icons">delete</i></a>
 
-    <!-- Note Button -->
-    <a class="btn-floating btn-medium blue right">
-    <i class="material-icons">edit</i></a>
+    <div class="row">
+        <div class="col s9">
+            <!-- Title  -->
+            <h5 class="title">{{this.title}}</h5>
+        </div>
+        <div class="col s3">
+            <!-- Note Button -->
+            <a class="btn-flat btn-medium blue modal-trigger"
+               href="#modal-{{this._id}}">
+                <i class="material-icons">edit</i></a>
 
-    <!-- Title and Summary Texts -->
-    <h4 class="title">This is an Article Title</h4>
-    <p>This is the article summary</p>
+            <!-- Delete Button -->
+            <a class="btn-flat btn-medium red delete-button"
+               data-id="{{this._id}}">
+                <i class="material-icons">delete</i></a>
+        </div>
+    </div>
+
+    <p>
+        From r/{{this.subreddit}}
+        <br>
+        Links to: <a href="{{this.link}}">{{this.link}}</a>
+    </p>
+
+    <!-- Modal Structure -->
+    <div id="modal-{{this._id}}" class="modal">
+        <div class="modal-content">
+            <h4>{{this._id}} Notes:</h4>
+
+            <!-- Loop and add all current notes -->
+            {{#each this.note}}
+                {{> note}}
+            {{/each}}
+
+            <!-- New Note Text -->
+            <label for="{{this._id}}-note-text">New Note</label>
+            <textarea class="materialize-textarea"
+                      id="{{this._id}}-note-text"></textarea>
+
+            <!-- Close Modal -->
+            <a href="#!" class="modal-action modal-close
+            btn-medium btn-flat red right">
+                <i class="material-icons">keyboard_hide</i></a>
+
+            <!-- Add Note -->
+            <a class="create-note
+            btn-medium btn-flat green right"
+            data-id="{{this._id}}">
+                <i class="material-icons">add_box</i></a>
+        </div>
+    </div>
 </li>

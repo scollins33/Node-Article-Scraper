@@ -11,6 +11,7 @@ const app = express();
 app.use(express.static('public'));
 
 // body-parser and handlebars middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.engine('handlebars', expHandls({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
